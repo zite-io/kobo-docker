@@ -185,7 +185,7 @@ enketo_express:
 
 # Adapted from https://github.com/kobotoolbox/enketo-express/blob/docker/docker-compose.yml.
 redis_main:
-  image: redis:2.6
+  image: armhf/redis
   # Map our "main" Redis config into the container.
   volumes:
     - ./redis/redis-enketo-main.conf:/etc/redis/redis.conf:ro
@@ -194,7 +194,7 @@ redis_main:
 
 # Adapted from https://github.com/kobotoolbox/enketo-express/blob/docker/docker-compose.yml.
 redis_cache:
-  image: redis:2.6
+  image: armhf/redis
   # Map our "cache" Redis config into the container.
   volumes:
     - ./redis/redis-enketo-cache.conf:/etc/redis/redis.conf:ro
