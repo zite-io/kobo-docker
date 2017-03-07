@@ -1,4 +1,4 @@
-FROM phusion/baseimage:latest
+FROM kobotoolbox/phusion_armhf:latest
 
 MAINTAINER Serban Teodorescu, teodorescu.serban@gmail.com
 
