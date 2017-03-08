@@ -75,10 +75,10 @@ echo 'Checking out current `armhf` branch of `kobocat`.'
 )
 
 (
-    cd ../kpi
+    cd ../kobocat
     
     echo 'Building and tagging Docker image `kobotoolbox/kobocat_base`.'
-    docker build -t kobotoolbox/koboform_base -f Dockerfile.kobocat_base .
+    docker build -t kobotoolbox/kobocat_base -f Dockerfile.kobocat_base .
 
     echo 'Building and tagging Docker image `kobotoolbox/kobocat`.'
     docker build -t kobotoolbox/kobocat .
