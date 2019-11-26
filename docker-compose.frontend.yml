@@ -42,7 +42,7 @@ services:
           - kobocat.docker.container
 
   kpi:
-    image: kobotoolbox/kpi:two-databases_2.019.41
+    image: kobotoolbox/kpi:two-databases_2.019.48
     hostname: kpi
     env_file:
       - ../kobo-deployments/envfile.txt
