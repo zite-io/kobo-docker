@@ -5,6 +5,8 @@ services:
 
   postgres:
     volumes:
+      # TODO: remove this `/mnt/new/` override after returning to single EBS
+      - /mnt/new/newpg/dbvol:/var/lib/postgresql/data
       - ../kobo-deployments/postgres/master/postgres.conf:/kobo-docker-scripts/master/postgres.conf
     environment:
       - POSTGRES_BACKUP_FROM_SLAVE=True
