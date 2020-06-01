@@ -123,7 +123,7 @@ services:
 
   # Adapted from https://github.com/kobotoolbox/enketo-express/blob/docker/docker-compose.yml.
   enketo_express:
-    image: kobotoolbox/enketo-express-extra-widgets:2.3.3
+    image: kobotoolbox/enketo-express-extra-widgets:2.3.4
     env_file:
       - ../kobo-deployments/envfile.txt
     environment:
