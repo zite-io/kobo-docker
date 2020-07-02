@@ -6,7 +6,7 @@ version: '3'
 
 services:
   kobocat:
-    image: kobotoolbox/kobocat:two-databases_2.019.47__hotfix
+    image: kobotoolbox/kobocat:two-databases_2.019.47__hotfix__throttle__tag
     hostname: kobocat
     env_file:
       - ../kobo-deployments/envfile.txt
