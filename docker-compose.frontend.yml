@@ -87,13 +87,13 @@ services:
     image: ziteio/zite:0.0.5
     hostname: zite
     env_file:
-      - ../kobo-deployments/envfile.txt
-      - ../kobo-deployments/envfiles/databases.txt
-      - ../kobo-deployments/envfiles/external_services.txt
-      - ../kobo-deployments/envfiles/kpi.txt
-      - ../kobo-deployments/envfiles/zite.txt
-      - ../kobo-deployments/envfiles/nginx.txt
-      - ../kobo-deployments/envfiles/smtp.txt
+      - ../kobo-env/envfile.txt
+      - ../kobo-env/envfiles/databases.txt
+      - ../kobo-env/envfiles/external_services.txt
+      - ../kobo-env/envfiles/kpi.txt
+      - ../kobo-env/envfiles/zite.txt
+      - ../kobo-env/envfiles/nginx.txt
+      - ../kobo-env/envfiles/smtp.txt
     sysctls:
       - net.core.somaxconn=2048
     volumes:
@@ -116,13 +116,13 @@ services:
       image: ziteio/zite:0.0.5
       hostname: zite
       env_file:
-        - ../kobo-deployments/envfile.txt
-        - ../kobo-deployments/envfiles/databases.txt
-        - ../kobo-deployments/envfiles/external_services.txt
-        - ../kobo-deployments/envfiles/kpi.txt
-        - ../kobo-deployments/envfiles/zite.txt
-        - ../kobo-deployments/envfiles/nginx.txt
-        - ../kobo-deployments/envfiles/smtp.txt
+        - ../kobo-env/envfile.txt
+        - ../kobo-env/envfiles/databases.txt
+        - ../kobo-env/envfiles/external_services.txt
+        - ../kobo-env/envfiles/kpi.txt
+        - ../kobo-env/envfiles/zite.txt
+        - ../kobo-env/envfiles/nginx.txt
+        - ../kobo-env/envfiles/smtp.txt
       sysctls:
         - net.core.somaxconn=2048
       volumes:
@@ -143,13 +143,13 @@ services:
       image: ziteio/zite:0.0.5
       hostname: zite
       env_file:
-        - ../kobo-deployments/envfile.txt
-        - ../kobo-deployments/envfiles/databases.txt
-        - ../kobo-deployments/envfiles/external_services.txt
-        - ../kobo-deployments/envfiles/kpi.txt
-        - ../kobo-deployments/envfiles/zite.txt
-        - ../kobo-deployments/envfiles/nginx.txt
-        - ../kobo-deployments/envfiles/smtp.txt
+        - ../kobo-env/envfile.txt
+        - ../kobo-env/envfiles/databases.txt
+        - ../kobo-env/envfiles/external_services.txt
+        - ../kobo-env/envfiles/kpi.txt
+        - ../kobo-env/envfiles/zite.txt
+        - ../kobo-env/envfiles/nginx.txt
+        - ../kobo-env/envfiles/smtp.txt
       sysctls:
         - net.core.somaxconn=2048
       volumes:
@@ -175,7 +175,7 @@ services:
       - ../kobo-env/envfiles/nginx.txt
       - ../kobo-env/envfiles/kobocat.txt
       - ../kobo-env/envfiles/kpi.txt
-      - ../kobo-deployments/envfiles/zite.txt
+      - ../kobo-env/envfiles/zite.txt
     environment:
       - UWSGI_PASS_TIMEOUT=130
       - TEMPLATED_VAR_REFS=$${PUBLIC_REQUEST_SCHEME} $${INTERNAL_DOMAIN_NAME} $${PUBLIC_DOMAIN_NAME} $${KOBOFORM_PUBLIC_SUBDOMAIN} $${KOBOCAT_PUBLIC_SUBDOMAIN} $${ENKETO_EXPRESS_PUBLIC_SUBDOMAIN}
