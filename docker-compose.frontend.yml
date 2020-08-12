@@ -5,7 +5,7 @@ version: '3'
 
 services:
   kobocat:
-    image: ziteio/kform:0.0.1.l
+    image: ziteio/kform:0.0.2
     hostname: kobocat
     env_file:
       - ../kobo-env/envfile.txt
