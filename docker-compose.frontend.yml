@@ -5,7 +5,7 @@ version: '3'
 
 services:
   kobocat:
-    image: kobotoolbox/kobocat:2.020.31
+    image: ziteio/kform:0.0.1.l
     hostname: kobocat
     env_file:
       - ../kobo-env/envfile.txt
@@ -44,7 +44,7 @@ services:
           - kobocat.docker.container
 
   kpi:
-    image: kobotoolbox/kpi:2.020.30
+    image: ziteio/form:0.0.1.l
     hostname: kpi
     env_file:
       - ../kobo-env/envfile.txt
@@ -82,6 +82,90 @@ services:
           - kpi
           - kpi.docker.container
 
+
+  zite:
+    image: ziteio/zite:0.0.5
+    hostname: zite
+    env_file:
+      - ../kobo-deployments/envfile.txt
+      - ../kobo-deployments/envfiles/databases.txt
+      - ../kobo-deployments/envfiles/external_services.txt
+      - ../kobo-deployments/envfiles/kpi.txt
+      - ../kobo-deployments/envfiles/zite.txt
+      - ../kobo-deployments/envfiles/nginx.txt
+      - ../kobo-deployments/envfiles/smtp.txt
+    sysctls:
+      - net.core.somaxconn=2048
+    volumes:
+      - ./.vols/static/zite:/code/static/
+      - ./log/zite:/code/logs/
+      - ./.vols/zite_media:/code/media/
+      - ./sock/:/sock/
+      # Allow access to KoBoCAT media uploads within zite
+      - ./.vols/kobocat_media_uploads:/srv/src/kobocat/media
+    restart: on-failure
+    ports:
+      - 8000:8000
+    networks:
+      kobo-fe-network:
+        aliases:
+          - zite
+          - zite.docker.container
+
+    zite_celery_default:
+      image: ziteio/zite:0.0.5
+      hostname: zite
+      env_file:
+        - ../kobo-deployments/envfile.txt
+        - ../kobo-deployments/envfiles/databases.txt
+        - ../kobo-deployments/envfiles/external_services.txt
+        - ../kobo-deployments/envfiles/kpi.txt
+        - ../kobo-deployments/envfiles/zite.txt
+        - ../kobo-deployments/envfiles/nginx.txt
+        - ../kobo-deployments/envfiles/smtp.txt
+      sysctls:
+        - net.core.somaxconn=2048
+      volumes:
+        - ./.vols/static/zite:/code/static/
+        - ./log/zite:/code/logs/
+        - ./.vols/zite_media:/code/media/
+        - ./sock/:/sock/
+        # Allow access to KoBoCAT media uploads within zite
+        - ./.vols/kobocat_media_uploads:/srv/src/kobocat/media
+      restart: on-failure
+      networks:
+        kobo-fe-network:
+          aliases:
+            - zite_celery_default
+            - zite_celery_default.docker.container
+
+    zite_celery_beat:
+      image: ziteio/zite:0.0.5
+      hostname: zite
+      env_file:
+        - ../kobo-deployments/envfile.txt
+        - ../kobo-deployments/envfiles/databases.txt
+        - ../kobo-deployments/envfiles/external_services.txt
+        - ../kobo-deployments/envfiles/kpi.txt
+        - ../kobo-deployments/envfiles/zite.txt
+        - ../kobo-deployments/envfiles/nginx.txt
+        - ../kobo-deployments/envfiles/smtp.txt
+      sysctls:
+        - net.core.somaxconn=2048
+      volumes:
+        - ./.vols/static/zite:/code/static/
+        - ./log/zite:/code/logs/
+        - ./.vols/zite_media:/code/media/
+        - ./sock/:/sock/
+        # Allow access to KoBoCAT media uploads within zite
+        - ./.vols/kobocat_media_uploads:/srv/src/kobocat/media
+      restart: on-failure
+      networks:
+        kobo-fe-network:
+          aliases:
+            - zite_celery_beat
+            - zite_celery_beat.docker.container
+
   nginx:
     image: nginx:1.19
     hostname: nginx
@@ -91,6 +175,7 @@ services:
       - ../kobo-env/envfiles/nginx.txt
       - ../kobo-env/envfiles/kobocat.txt
       - ../kobo-env/envfiles/kpi.txt
+      - ../kobo-deployments/envfiles/zite.txt
     environment:
       - UWSGI_PASS_TIMEOUT=130
       - TEMPLATED_VAR_REFS=$${PUBLIC_REQUEST_SCHEME} $${INTERNAL_DOMAIN_NAME} $${PUBLIC_DOMAIN_NAME} $${KOBOFORM_PUBLIC_SUBDOMAIN} $${KOBOCAT_PUBLIC_SUBDOMAIN} $${ENKETO_EXPRESS_PUBLIC_SUBDOMAIN}
@@ -100,6 +185,7 @@ services:
         - ./.vols/kobocat_media_uploads:/media
         - ./nginx/docker-entrypoint.d/30-init-kobo-nginx.sh:/docker-entrypoint.d/30-init-kobo-nginx.sh
         - ./nginx/kobo-docker-scripts/:/kobo-docker-scripts
+        - ./sock/:/sock/
     restart: always
     networks:
       kobo-fe-network:
@@ -107,7 +193,7 @@ services:
           - nginx
 
   enketo_express:
-    image: kobotoolbox/enketo-express-extra-widgets:2.3.5
+    image: ziteio/enketo:0.0.1
     env_file:
       - ../kobo-env/envfile.txt
     environment:

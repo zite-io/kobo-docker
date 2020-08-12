@@ -2,6 +2,11 @@
 
 charset     utf-8;
 
+upstream zite_server {
+    server unix:///sock/zite.sock;
+}
+
+
 # Default configuration
 server {
     listen 80 default_server;
@@ -111,6 +116,39 @@ server {
 
         # Debug proxying directly to container.
         ${kpi_include_proxy_pass}
+    }
+}
+
+# ZITE HTTP.
+server {
+    listen      80;
+    #add_header 'Access-Control-Allow-Origin' '*';
+    server_name ${ZITE_PUBLIC_SUBDOMAIN}.${PUBLIC_DOMAIN_NAME} ${ZITE_PUBLIC_SUBDOMAIN}.${INTERNAL_DOMAIN_NAME};
+    #server_name zite.zite.io zite.docker.internal;
+
+    include /etc/nginx/include.server_directive_common.conf;
+
+    access_log  /var/log/nginx/zite.access.log with_host;
+    error_log   /var/log/nginx/zite.error.log;
+
+    error_page 418 = /static/html/Offline.html;
+
+    location / {
+        # Proxy through uWSGI.
+        #${kpi_include_uwsgi_pass}
+
+        # Debug proxying directly to container.
+        #${kpi_include_proxy_pass}
+        #proxy_pass http://zite:8000;
+        uwsgi_pass zite_server;
+        include uwsgi_params;
+        proxy_set_header Host $host:$proxy_port;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $remote_addr;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header X-Forwarded-Host zite.zite.io;
+        proxy_redirect off;
+
     }
 }
 

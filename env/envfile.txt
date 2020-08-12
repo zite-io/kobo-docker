@@ -11,6 +11,7 @@ PUBLIC_DOMAIN_NAME=domain.name
 INTERNAL_DOMAIN_NAME=docker.internal
 # The publicly-accessible subdomain for the KoBoForm form building and management interface (e.g. koboform).
 KOBOFORM_PUBLIC_SUBDOMAIN=kobo
+ZITE_PUBLIC_SUBDOMAIN=zite
 # The publicly-accessible subdomain for the KoBoCAT data collection and project management interface (e.g.kobocat).
 KOBOCAT_PUBLIC_SUBDOMAIN=kc
 # The publicly-accessible subdomain for the Enketo Express web forms (e.g. enketo).

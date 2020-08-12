@@ -64,6 +64,24 @@ services:
         aliases:
           - enketo_express
 
+  zite:
+    networks:
+      kobo-be-network:
+        aliases:
+          - zite
+
+  zite_celery_default:
+    networks:
+      kobo-be-network:
+        aliases:
+          - zite_celery_default
+
+  zite_celery_beat:
+    networks:
+      kobo-be-network:
+        aliases:
+          - zite_celery_beat
+
 networks:
   kobo-be-network:
     external:
