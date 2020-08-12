@@ -112,7 +112,7 @@ services:
           - zite
           - zite.docker.container
 
-    zite_celery_default:
+  zite_celery_default:
       image: ziteio/zite:0.0.5
       hostname: zite
       env_file:
@@ -139,7 +139,7 @@ services:
             - zite_celery_default
             - zite_celery_default.docker.container
 
-    zite_celery_beat:
+  zite_celery_beat:
       image: ziteio/zite:0.0.5
       hostname: zite
       env_file:
