@@ -126,7 +126,7 @@ server {
     server_name ${ZITE_PUBLIC_SUBDOMAIN}.${PUBLIC_DOMAIN_NAME} ${ZITE_PUBLIC_SUBDOMAIN}.${INTERNAL_DOMAIN_NAME};
     #server_name zite.zite.io zite.docker.internal;
 
-    include /etc/nginx/include.server_directive_common.conf;
+    include /etc/nginx/includes/server_directive_common.conf;
 
     access_log  /var/log/nginx/zite.access.log with_host;
     error_log   /var/log/nginx/zite.error.log;

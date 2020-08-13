@@ -112,7 +112,7 @@ services:
           - zite
           - zite.docker.container
 
-  zite_celery_default:
+  zite_worker:
       image: ziteio/zite:0.0.5
       hostname: zite
       env_file:
@@ -136,10 +136,10 @@ services:
       networks:
         kobo-fe-network:
           aliases:
-            - zite_celery_default
-            - zite_celery_default.docker.container
+            - zite_worker
+            - zite_worker.docker.container
 
-  zite_celery_beat:
+  zite_beat:
       image: ziteio/zite:0.0.5
       hostname: zite
       env_file:
@@ -163,8 +163,8 @@ services:
       networks:
         kobo-fe-network:
           aliases:
-            - zite_celery_beat
-            - zite_celery_beat.docker.container
+            - zite_beat
+            - zite_beat.docker.container
 
   nginx:
     image: nginx:1.19
