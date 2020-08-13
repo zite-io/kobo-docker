@@ -146,7 +146,7 @@ server {
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-For $remote_addr;
         proxy_set_header X-Forwarded-Proto $scheme;
-        proxy_set_header X-Forwarded-Host zite.zite.io;
+        proxy_set_header X-Forwarded-Host ${ZITE_PUBLIC_SUBDOMAIN}.${PUBLIC_DOMAIN_NAME};
         proxy_redirect off;
 
     }
