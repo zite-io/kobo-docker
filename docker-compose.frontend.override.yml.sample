@@ -70,17 +70,17 @@ services:
         aliases:
           - zite
 
-  zite_celery_default:
+  zite_worker:
     networks:
       kobo-be-network:
         aliases:
-          - zite_celery_default
+          - zite_worker
 
-  zite_celery_beat:
+  zite_beat:
     networks:
       kobo-be-network:
         aliases:
-          - zite_celery_beat
+          - zite_beat
 
 networks:
   kobo-be-network:
