@@ -94,6 +94,7 @@ services:
       - ../kobo-env/envfiles/zite.txt
       - ../kobo-env/envfiles/nginx.txt
       - ../kobo-env/envfiles/smtp.txt
+      - ../kobo-env/envfiles/aws.txt
     sysctls:
       - net.core.somaxconn=2048
     volumes:
@@ -123,6 +124,7 @@ services:
         - ../kobo-env/envfiles/zite.txt
         - ../kobo-env/envfiles/nginx.txt
         - ../kobo-env/envfiles/smtp.txt
+        - ../kobo-env/envfiles/aws.txt
       sysctls:
         - net.core.somaxconn=2048
       volumes:
@@ -150,6 +152,7 @@ services:
         - ../kobo-env/envfiles/zite.txt
         - ../kobo-env/envfiles/nginx.txt
         - ../kobo-env/envfiles/smtp.txt
+        - ../kobo-env/envfiles/aws.txt
       sysctls:
         - net.core.somaxconn=2048
       volumes:
