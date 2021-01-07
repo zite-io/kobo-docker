@@ -1,0 +1,40 @@
+# For public, HTTPS servers.
+version: '2.2'
+
+services:
+
+  postgres:
+    #volumes:
+    #  - ../kobo-env/postgres/primary/postgres.conf:/kobo-docker-scripts/primary/postgres.conf
+    #environment:
+    #  - POSTGRES_BACKUP_FROM_SECONDARY=True
+    #ports:
+    #  - 5432:5432
+    networks:
+      kobo-be-network:
+        aliases:
+          - postgres.zite.private
+
+  mongo:
+    #ports:
+    #  - 27017:27017
+    networks:
+      kobo-be-network:
+        aliases:
+          - mongo.zite.private
+
+  redis_main:
+    #ports:
+    #  - 6379:6379
+    networks:
+      kobo-be-network:
+        aliases:
+          - redis-main.zite.private
+
+  redis_cache:
+    #ports:
+    #  - 6380:6380
+    networks:
+      kobo-be-network:
+        aliases:
+          - redis-cache.zite.private

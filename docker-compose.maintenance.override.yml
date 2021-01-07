@@ -1,0 +1,13 @@
+# For public, HTTPS servers.
+version: '3'
+
+services:
+
+  maintenance:
+    environment:
+      - ETA=
+      - DATE_STR=
+      - DATE_ISO=
+      - EMAIL=
+    ports:
+      - 80:80
