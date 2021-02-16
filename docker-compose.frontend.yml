@@ -5,7 +5,7 @@ version: '3'
 
 services:
   kobocat:
-    image: docker.pkg.github.com/zite-io/kobocat/kobocat:zite
+    image: ziteio/kform:base
     hostname: kobocat
     env_file:
       - ../kobo-env/envfile.txt
@@ -44,7 +44,7 @@ services:
           - kobocat.docker.container
 
   kpi:
-    image: docker.pkg.github.com/zite-io/kpi/kpi:base
+    image: ziteio/form:base
     hostname: kpi
     env_file:
       - ../kobo-env/envfile.txt
@@ -84,7 +84,7 @@ services:
 
 
   zite:
-    image: docker.pkg.github.com/zite-io/zite/zite:base
+    image: ziteio/zite:base
     hostname: zite
     env_file:
       - ../kobo-env/envfile.txt
@@ -114,7 +114,7 @@ services:
           - zite.docker.container
 
   zite_worker:
-      image: ziteio/zite:0.0.5
+      image: ziteio/zite:base
       hostname: zite
       env_file:
         - ../kobo-env/envfile.txt
@@ -142,7 +142,7 @@ services:
             - zite_worker.docker.container
 
   zite_beat:
-      image: ziteio/zite:0.0.5
+      image: ziteio/zite:base
       hostname: zite
       env_file:
         - ../kobo-env/envfile.txt
@@ -196,7 +196,7 @@ services:
           - nginx
 
   enketo_express:
-    image: docker.pkg.github.com/zite-io/enketo/enketo:base
+    image: ziteio/enketo:base
     env_file:
       - ../kobo-env/envfile.txt
     environment:
