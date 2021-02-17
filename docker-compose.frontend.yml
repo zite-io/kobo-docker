@@ -27,6 +27,7 @@ services:
       - KC_UWSGI_HARAKIRI=120
       - KC_UWSGI_WORKER_RELOAD_MERCY=120
     volumes:
+      - ../srv/kobo/kobocat:/srv/src/kobocat
       - ./.vols/static/kobocat:/srv/static
       - ./.vols/kobocat_media_uploads:/srv/src/kobocat/media
       - ./backups/kobocat:/srv/backups
@@ -65,6 +66,7 @@ services:
       - KPI_UWSGI_HARAKIRI=120
       - KPI_UWSGI_WORKER_RELOAD_MERCY=120
     volumes:
+      - ../srv/kobo/kpi:/srv/src/kpi
       - ./.vols/static/kpi:/srv/static
       - ./log/kpi:/srv/logs
       - ./scripts/wait_for_mongo.bash:/srv/init/wait_for_mongo.bash:ro
@@ -183,6 +185,7 @@ services:
       - UWSGI_PASS_TIMEOUT=130
       - TEMPLATED_VAR_REFS=$${PUBLIC_REQUEST_SCHEME} $${INTERNAL_DOMAIN_NAME} $${PUBLIC_DOMAIN_NAME} $${KOBOFORM_PUBLIC_SUBDOMAIN} $${KOBOCAT_PUBLIC_SUBDOMAIN} $${ENKETO_EXPRESS_PUBLIC_SUBDOMAIN} $${ZITE_PUBLIC_SUBDOMAIN}
     volumes:
+        - ../srv/kobo/enketo_express:/srv/src/enketo_express
         - ./.vols/static:/srv/www:ro
         - ./log/nginx:/var/log/nginx
         - ./.vols/kobocat_media_uploads:/media
